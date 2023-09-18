@@ -23,8 +23,10 @@ export default function Text(props) {
 
   const onChange = (event) => {
     const target = {
-      name: name,
-      value: event.target.value,
+      target: {
+        name: name,
+        value: event.target.value,
+      },
     };
 
     if (type === "email") {

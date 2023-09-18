@@ -7,6 +7,7 @@
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   font-family: $btn-font-family;
   font-weight: $btn-font-weight;
   color: $body-color;
@@ -150,9 +151,9 @@ fieldset:disabled a.btn {
 }
 
 // Specificity overrides
-input[type='submit'],
-input[type='reset'],
-input[type='button'] {
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
   &.btn-block {
     width: 100%;
   }
