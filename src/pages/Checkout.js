@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Fade from "react-reveal";
+import { connect } from "react-redux";
 
 import Header from "parts/Header";
 import Button from "elements/Button";
@@ -44,7 +45,32 @@ class Checkout extends Component {
 
   render() {
     const { data } = this.state;
-    const checkout = { duration: 3 };
+    const { checkout, page } = this.props;
+
+    if (!checkout) {
+      return (
+        <div className="container">
+          <div
+            className="row align-items-center justify-content-center text-center"
+            style={{ height: "100vh" }}
+          >
+            <div className="col-3">
+              Pilih Kamar Dulu
+              <div>
+                <Button
+                  className="btn mt-5"
+                  type="button"
+                  onClick={() => this.props.history.goBack()}
+                  isLight
+                >
+                  Back
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     const steps = {
       bookingInformation: {
@@ -54,7 +80,7 @@ class Checkout extends Component {
           <BookingInformation
             data={data}
             checkout={checkout}
-            ItemDetails={ItemDetails}
+            ItemDetails={page[checkout._id]}
             onChange={this.onChange}
           />
         ),
@@ -66,7 +92,7 @@ class Checkout extends Component {
           <Payment
             data={data}
             checkout={checkout}
-            ItemDetails={ItemDetails}
+            ItemDetails={page[checkout._id]}
             onChange={this.onChange}
           />
         ),
@@ -178,4 +204,9 @@ class Checkout extends Component {
   }
 }
 
-export default Checkout;
+const mapStateToProps = (state) => ({
+  checkout: state.checkout,
+  page: state.page,
+});
+
+export default connect(mapStateToProps)(Checkout);
