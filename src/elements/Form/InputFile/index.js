@@ -1,11 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 import "./index.scss";
 
 export default function File(props) {
+  const [fileName, setFileName] = useState("");
+
   const {
-    value,
     placeholder,
     name,
     accept,
@@ -16,6 +17,16 @@ export default function File(props) {
   } = props;
 
   const refInputFile = useRef(null);
+
+  const onChange = (event) => {
+    setFileName(event.target.value);
+    props.onChange({
+      target: {
+        name: event.target.name,
+        value: event.target.files,
+      },
+    });
+  };
 
   return (
     <div className={["input-text mb-3", outerClassName].join(" ")}>
@@ -31,12 +42,12 @@ export default function File(props) {
           name={name}
           className="d-none"
           type="file"
-          value={value}
-          onChange={props.onChange}
+          value={fileName}
+          onChange={onChange}
         />
         <input
           onClick={() => refInputFile.current.click()}
-          defaultValue={value}
+          defaultValue={fileName}
           placeholder={placeholder}
           className={["form-control", inputClassName].join(" ")}
         />
@@ -57,7 +68,6 @@ File.defaultProps = {
 File.propTypes = {
   name: PropTypes.string.isRequired,
   accept: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   prepend: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   append: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
