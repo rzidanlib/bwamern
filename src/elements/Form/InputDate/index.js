@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 
-import { DateRange } from 'react-date-range';
+import { DateRange } from "react-date-range";
 
-import './index.scss';
-import 'react-date-range/dist/styles.css'; //main css file
-import 'react-date-range/dist/theme/default.css'; //theme css file
+import "./index.scss";
+import "react-date-range/dist/styles.css"; //main css file
+import "react-date-range/dist/theme/default.css"; //theme css file
 
-import formatDate from 'utils/formatDate';
-import iconCalendar from 'assets/images/icons/icon_calendar.svg';
+import formatDate from "utils/formatDate";
+import iconCalendar from "assets/images/icons/icon_calendar.svg";
 
 export default function Date(props) {
   const { value, placeholder, name } = props;
@@ -25,10 +25,10 @@ export default function Date(props) {
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   });
 
@@ -43,32 +43,32 @@ export default function Date(props) {
     focus.indexOf(1) < 0 && setIsShowed(false);
   };
 
-  const displayDate = `${value.startDate ? formatDate(value.startDate) : ''}${
-    value.endDate ? ' - ' + formatDate(value.endDate) : ''
+  const displayDate = `${value.startDate ? formatDate(value.startDate) : ""}${
+    value.endDate ? " - " + formatDate(value.endDate) : ""
   }`;
 
   return (
     <div
       ref={refDate}
-      className={['input-date mb-3', props.outerClassName].join(' ')}
+      className={["input-date mb-3", props.outerClassName].join(" ")}
     >
-      <div className='input-group'>
-        <div className='input-group-prepend bg-gray-900'>
-          <span className='input-group-text'>
-            <img src={iconCalendar} alt='icon calendar' />
+      <div className="input-group">
+        <div className="input-group-prepend bg-gray-900">
+          <span className="input-group-text">
+            <img src={iconCalendar} alt="icon calendar" />
           </span>
         </div>
         <input
           readOnly
-          type='text'
-          className='form-control'
+          type="text"
+          className="form-control"
           value={displayDate}
           placeholder={placeholder}
           onClick={() => setIsShowed(!isShowed)}
         />
 
         {isShowed && (
-          <div className='date-range-wrapper'>
+          <div className="date-range-wrapper">
             <DateRange
               editableDateInputs={true}
               onChange={datePickerChange}

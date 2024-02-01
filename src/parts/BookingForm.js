@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
 
 import Button from "elements/Button";
 import { InputNumber, InputDate } from "elements/Form";
+import ButtonSubmitBooking from "elements/ButtonSubmitBooking";
 
 class BookingForm extends Component {
   constructor(props) {
@@ -117,6 +117,8 @@ class BookingForm extends Component {
           </span>
         </h6>
 
+        <ButtonSubmitBooking data={data} itemDetails={itemDetails} />
+
         <Button
           className="btn"
           hasShadow
@@ -136,4 +138,4 @@ BookingForm.propTypes = {
   startBooking: PropTypes.func,
 };
 
-export default withRouter(BookingForm);
+export default BookingForm;

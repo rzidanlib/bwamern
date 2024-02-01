@@ -15,6 +15,7 @@ import Payment from "parts/Checkout/Payment";
 import Completed from "parts/Checkout/Completed";
 
 import { submitBooking } from "store/actions/checkout";
+import { useNavigate } from "react-router-dom";
 
 class Checkout extends Component {
   state = {
@@ -162,15 +163,7 @@ class Checkout extends Component {
                         </Button>
                       </Fade>
                     )}
-                  <Button
-                    className="btn"
-                    type="button"
-                    isBlock
-                    isLight
-                    onClick={() => this.props.history.goBack()}
-                  >
-                    Cancel
-                  </Button>
+                  <BackButton isLight text="Cancel" />
                 </Controller>
               )}
 
@@ -206,16 +199,7 @@ class Checkout extends Component {
 
               {CurrentStep === "completed" && (
                 <Controller>
-                  <Button
-                    className="btn"
-                    type="button"
-                    isBlock
-                    isPrimary
-                    hasShadow
-                    onClick={() => this.props.history.push("/")}
-                  >
-                    Back to Home
-                  </Button>
+                  <BackButton isPrimary hasShadow text="Back to Home" />
                 </Controller>
               )}
             </>
@@ -224,6 +208,26 @@ class Checkout extends Component {
       </>
     );
   }
+}
+
+function BackButton({ hasShadow, text, isLight, isPrimary }) {
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <Button
+        className="btn"
+        type="button"
+        isBlock
+        isLight={isLight}
+        isPrimary={isPrimary}
+        hasShadow={hasShadow}
+        onClick={() => navigate("/")}
+      >
+        {text}
+      </Button>
+    </>
+  );
 }
 
 const mapStateToProps = (state) => ({
