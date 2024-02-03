@@ -18,9 +18,12 @@ export default function Hero(props) {
 
   return (
     <Fade bottom>
-      <section className="container pt-4">
+      <section className="container">
         <div className="row align-items-center">
-          <div className="col-auto pr-5" style={{ width: 530 }}>
+          <div
+            className="col-12 col-lg-auto pr-lg-5 mb-5 mb-lg-0"
+            style={{ width: 530 }}
+          >
             <h1 className="font-weight-bold line-height-1 mb-3">
               Forget Busy Work, <br />
               Start Next Vacation
@@ -40,7 +43,6 @@ export default function Hero(props) {
             >
               Show Me Now
             </Button>
-
             <div className="row" style={{ marginTop: 80 }}>
               <div className="col-auto">
                 <img
@@ -89,19 +91,18 @@ export default function Hero(props) {
             </div>
           </div>
 
-          <div className="col-6 pt-5">
-            <div style={{ width: 540, height: 410 }}>
+          <div className="col-12 col-lg-6 pt-3">
+            <div className="image-hero-placeholder position-relative">
               <img
                 src={ImageHero}
                 alt="Room with couches"
-                className="img-fluid position-absolute"
-                style={{ margin: "-30px 0 0 -30px", zIndex: 1 }}
+                className="img-fluid position-relative"
+                style={{ zIndex: 2 }}
               />
               <img
                 src={ImageHero_}
                 alt="Room with couches frame"
                 className="img-fluid position-absolute"
-                style={{ margin: "0 -15px -15px 0" }}
               />
             </div>
           </div>

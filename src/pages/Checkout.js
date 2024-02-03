@@ -151,19 +151,15 @@ class Checkout extends Component {
                     data.email !== "" &&
                     data.phone !== "" && (
                       <Fade>
-                        <Button
-                          className="btn mb-3"
-                          type="button"
-                          isBlock
+                        <ButtonSteps
                           isPrimary
                           hasShadow
-                          onClick={nextStep}
-                        >
-                          Continue to Book
-                        </Button>
+                          stepsTo={nextStep}
+                          text="Continue To Book"
+                        />
                       </Fade>
                     )}
-                  <BackButton isLight text="Cancel" />
+                  <ButtonSteps isLight text="Cancel" />
                 </Controller>
               )}
 
@@ -173,33 +169,25 @@ class Checkout extends Component {
                     data.bankName !== "" &&
                     data.bankHolder !== "" && (
                       <Fade>
-                        <Button
-                          className="btn mb-3"
-                          type="button"
-                          isBlock
+                        <ButtonSteps
                           isPrimary
                           hasShadow
-                          onClick={() => this._Submit(nextStep)}
-                        >
-                          Continue to Book
-                        </Button>
+                          stepsTo={() => this._Submit(nextStep)}
+                          text="Continue to Book"
+                        />
                       </Fade>
                     )}
-                  <Button
-                    className="btn"
-                    type="button"
-                    isBlock
+                  <ButtonSteps
                     isLight
-                    href={prevStep}
-                  >
-                    Cancel
-                  </Button>
+                    stepsTo={prevStep}
+                    text="Previous Step"
+                  />
                 </Controller>
               )}
 
               {CurrentStep === "completed" && (
                 <Controller>
-                  <BackButton isPrimary hasShadow text="Back to Home" />
+                  <ButtonSteps isPrimary hasShadow text="Back to Home" />
                 </Controller>
               )}
             </>
@@ -210,19 +198,28 @@ class Checkout extends Component {
   }
 }
 
-function BackButton({ hasShadow, text, isLight, isPrimary }) {
+function ButtonSteps(props) {
+  const { text, isLight, isPrimary, hasShadow, stepsTo } = props;
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (stepsTo) {
+      stepsTo();
+    } else {
+      navigate("/");
+    }
+  };
 
   return (
     <>
       <Button
-        className="btn"
+        className="btn mb-3"
         type="button"
         isBlock
         isLight={isLight}
         isPrimary={isPrimary}
         hasShadow={hasShadow}
-        onClick={() => navigate("/")}
+        onClick={handleClick}
       >
         {text}
       </Button>
