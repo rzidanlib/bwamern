@@ -26,8 +26,7 @@ function DetailsPage() {
     async (id) => {
       if (!page[id]) {
         try {
-          const response = await dispatch(fetchPage(`/detail-page/${id}`, id));
-          console.log(response);
+          await dispatch(fetchPage(`/detail-page/${id}`, id));
         } catch (error) {
           console.log(error);
         }

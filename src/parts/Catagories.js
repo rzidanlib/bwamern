@@ -30,7 +30,7 @@ export default function Catagories({ data }) {
                         <img
                           src={
                             item.imageId[0]
-                              ? `${process.env.REACT_APP_HOST}/${item.imageId[0].imageUrl}`
+                              ? item.imageId[0].imageUrl
                               : "notfound"
                           }
                           alt={item.title}

@@ -24,7 +24,7 @@ export default function FeatureImage() {
                 <div className="card h-100">
                   <figure className="img-wrapper">
                     <img
-                      src={`${process.env.REACT_APP_HOST}/${item.imageUrl}`}
+                      src={item.imageUrl}
                       alt={item._id}
                       className="img-cover"
                     />

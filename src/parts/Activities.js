@@ -23,11 +23,7 @@ export default function Activities({ data }) {
                     )}
                     <figure className="img-wrapper" style={{ height: 180 }}>
                       <img
-                        src={
-                          item.imageUrl
-                            ? `${process.env.REACT_APP_HOST}/${item.imageUrl}`
-                            : "notfound"
-                        }
+                        src={item.imageUrl ? item.imageUrl : "notfound"}
                         alt={item.name}
                         className="img-cover"
                       />
